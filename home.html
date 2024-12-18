@@ -10,7 +10,7 @@
       font-family: 'IBM Plex Sans Arabic', sans-serif;
       margin-bottom: 60px; /* For footer spacing */
     }
-    .top-bar {
+    header {
       background-color: teal;
       padding: 10px 20px;
       display: flex;
@@ -23,7 +23,7 @@
       right: 0;
       z-index: 1050; /* Ensures it stays above the sidebar */
     }
-    .top-bar .dropdown-menu a {
+    header .dropdown-menu a {
       color: darkpurple !important;
     }
     .logo img {
@@ -47,7 +47,6 @@
     .sidebar.visible {
       width: 250px;
     }
-    
     .sidebar a {
       display: flex;
       align-items: center;
@@ -85,12 +84,18 @@
       cursor: pointer;
       z-index: 1060; /* Ensures it stays above the sidebar */
     }
+    .carousel-caption {
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+    }
   </style>
 </head>
 <body>
 
-<!-- Top Bar -->
-<div class="top-bar d-flex">
+<!-- Header -->
+<header>
   <!-- Language Dropdown -->
   <div class="dropdown">
     <button class="btn btn-light dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -105,18 +110,106 @@
   </div>
 
   <!-- Logo -->
-   
-  <a href="home.html">
-  <div class="logo mx-auto">
+  <a href="home.html" class="logo mx-auto">
     <img src="logo.png" alt="Logo">
-  </div>
-</a>
+  </a>
 
-  <!-- Login Button -->
-  <div>
-    <button class="btn btn-light">تسجيل دخول</button>
+<!-- Login Button -->
+<div>
+  <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#emailModal">تسجيل دخول</button>
+</div>
+
+<!-- Email Modal -->
+<div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title" id="emailModalLabel">تأكيد البريد الإلكتروني</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <p>الرجاء إدخال بريدك الإلكتروني لإرسال رمز OTP.</p>
+        <div class="mb-3">
+          <label for="emailInput" class="form-label">البريد الإلكتروني</label>
+          <input type="email" class="form-control" id="emailInput" placeholder="example@domain.com">
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+        <button type="button" class="btn btn-primary" onclick="sendOTP()">إرسال رمز OTP</button>
+      </div>
+    </div>
   </div>
 </div>
+
+<!-- OTP Modal -->
+<div class="modal fade" id="otpModal" tabindex="-1" aria-labelledby="otpModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title" id="otpModalLabel">تأكيد رمز OTP</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <p>تم إرسال رمز OTP إلى بريدك الإلكتروني. الرجاء إدخاله أدناه.</p>
+        <div class="mb-3">
+          <label for="otpInput" class="form-label">رمز OTP</label>
+          <input type="text" class="form-control" id="otpInput" placeholder="أدخل الرمز المكون من 6 أرقام">
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+        <button type="button" class="btn btn-primary" onclick="confirmOTP()">تأكيد</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Simulating OTP sending
+  function sendOTP() {
+    const email = document.getElementById('emailInput').value;
+    if (email === "") {
+      alert("الرجاء إدخال بريد إلكتروني صالح.");
+    } else {
+      alert(`تم إرسال رمز OTP إلى البريد الإلكتروني: ${email}`);
+      // Close email modal and open OTP modal
+      const emailModal = bootstrap.Modal.getInstance(document.getElementById('emailModal'));
+      emailModal.hide();
+      const otpModal = new bootstrap.Modal(document.getElementById('otpModal'));
+      otpModal.show();
+    }
+  }
+
+  // Function to handle OTP confirmation
+  function confirmOTP() {
+    const otpCode = document.getElementById('otpInput').value;
+    if (otpCode === "") {
+      alert("الرجاء إدخال رمز OTP.");
+    } else if (otpCode.length === 6) {
+      alert("تم تأكيد الرمز بنجاح! 🎉");
+      // Redirect or perform other actions here
+      // window.location.href = "dashboard.html";
+    } else {
+      alert("الرمز المدخل غير صحيح. الرجاء المحاولة مرة أخرى.");
+    }
+  }
+</script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</header>
 
 <!-- Sidebar -->
 <div id="sidebar" class="sidebar hidden">
@@ -145,10 +238,38 @@
 <!-- Toggle Sidebar Button -->
 <button id="toggleSidebarBtn" class="toggle-sidebar-btn">☰</button>
 
-<!-- Content Area -->
-<div class="container mt-5" style="margin-right: 80px;">
-  <h1>اهلا وسهلا بكم في تطبيق مشط ومقص </h1>
-  <p>يمكنك تصفح الخيارات والخدمات من القائمة يمين الصفحة </p>
+<!-- Slider Content -->
+<div id="carouselExampleIndicators" class="carousel slide mt-5" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+  </div>
+  <div class="carousel-inner">
+    <!-- Slide 1 -->
+    <div class="carousel-item active">
+      <img src="slide1.jpg" class="d-block w-100" alt="Slide 1">
+      <div class="carousel-caption">
+        <h5>خدمات الحجز السريع</h5>
+        <p>احجز موعدك مع افضل الحلاقين في مدينتك.</p>
+      </div>
+    </div>
+    <!-- Slide 2 -->
+    <div class="carousel-item">
+      <img src="slide2.jpg" class="d-block w-100" alt="Slide 2">
+      <div class="carousel-caption">
+        <h5>استفد من عروضنا الحصرية</h5>
+        <p>عروض وتخفيضات خاصة على الخدمات.</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
 
 <!-- Footer -->

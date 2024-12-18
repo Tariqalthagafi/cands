@@ -8,8 +8,10 @@
   <style>
     body {
       font-family: 'IBM Plex Sans Arabic', sans-serif;
-      margin-bottom: 60px; /* For footer spacing */
+      margin-right: 270px; /* Adjust for the sidebar */
     }
+
+    /* Top Bar */
     .top-bar {
       background-color: teal;
       padding: 10px 20px;
@@ -23,54 +25,99 @@
       right: 0;
       z-index: 1050; /* Ensures it stays above the sidebar */
     }
-    .top-bar .dropdown-menu a {
-      color: darkpurple !important;
+
+    .top-bar .logo img {
+      height: 50px;
+      width: auto;
     }
-    .logo img {
-      height: 50px; /* Resize logo */
-      width: auto;  /* Maintain aspect ratio */
-    }
+
+    /* Sidebar */
     .sidebar {
       position: fixed;
-      top: 60px; /* Leaves space for the top bar */
+      top: 60px; /* Below the top bar */
       right: 0;
       height: calc(100% - 60px); /* Adjust height to avoid overlap */
       background-color: darkpurple;
       color: white;
+      width: 250px;
       overflow-x: hidden;
       transition: width 0.3s ease;
-      z-index: 1040; /* Places it under the top bar */
+      z-index: 1040; /* Below the top bar */
     }
+
     .sidebar.hidden {
       width: 70px;
     }
-    .sidebar.visible {
-      width: 250px;
-    }
+
     .sidebar a {
       display: flex;
       align-items: center;
       color: white;
       padding: 10px 20px;
       text-decoration: none;
+      transition: background-color 0.3s ease;
     }
-    .sidebar a {
-      display: flex;
-      align-items: center;
-      color: darkblue;
-      padding: 10px 20px;
-      text-decoration: none;
-    }
+
     .sidebar a:hover {
-      background-color: darkblue;
+      background-color: teal;
     }
+
     .sidebar .icon {
       font-size: 20px;
       margin-right: 15px;
     }
+
     .sidebar.hidden .text {
       display: none;
     }
+
+    .toggle-sidebar-btn {
+      position: fixed;
+      top: 70px; /* Below the top bar */
+      right: 260px;
+      background-color: teal;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 1060; /* Above the sidebar */
+    }
+
+    /* Profile Container */
+    .profile-container {
+      margin-right: 270px; /* Leave space for the sidebar */
+      max-width: 800px;
+      margin-top: 80px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .profile-container h2 {
+      text-align: center;
+      color: darkpurple;
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      color: teal;
+      font-weight: bold;
+    }
+
+    .btn-primary {
+      background-color: teal;
+      border-color: teal;
+    }
+
+    .btn-primary:hover {
+      background-color: darkpurple;
+      border-color: darkpurple;
+    }
+
     footer {
       background-color: darkblue;
       color: white;
@@ -80,172 +127,234 @@
       bottom: 0;
       width: 100%;
     }
-    .toggle-sidebar-btn {
-      position: fixed;
-      top: 70px; /* Below the top bar */
-      right: 80px;
+
+    /* Edit and Save Button Styles */
+    .edit-btn, .save-btn {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .edit-btn {
+      color: teal;
+    }
+
+    .save-btn {
+      display: none;
+      color: darkpurple;
+    }
+
+    .edit-btn:hover, .save-btn:hover {
+      color: darkpurple;
+    }
+
+    .location-input {
+      width: 100%;
+    }
+
+    .location-btn {
+      margin-top: 10px;
       background-color: teal;
       color: white;
-      border: none;
-      padding: 10px;
-      cursor: pointer;
-      z-index: 1060; /* Ensures it stays above the sidebar */
     }
-    
-    {
-      font-family: 'IBM Plex Sans Arabic', sans-serif;
-    }
-    .profile-container {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: #f9f9f9;
-      border: 1px solid #ddd;
+
+    /* Profile Picture */
+    .profile-picture {
+      width: 120px;
+      height: 120px;
+      background-color: #ddd;
       border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin: 0 auto;
+      position: relative;
     }
-    .profile-container h2 {
-      text-align: center;
-      color: darkpurple;
-      margin-bottom: 20px;
-    }
-    .form-label {
-      color: teal;
-      font-weight: bold;
-    }
-    .btn-primary {
-      background-color: teal;
-      border-color: teal;
-    }
-    .btn-primary:hover {
-      background-color: darkpurple;
-      border-color: darkpurple;
-    }
-    iframe {
+
+    .profile-picture img {
       width: 100%;
-      height: 300px;
-      border: none;
+      height: 100%;
       border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .profile-picture .btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background-color: transparent;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .profile-picture .btn.delete {
+      right: 5px;
+      top: 35px;
     }
   </style>
 </head>
 <body>
-<!-- Top Bar -->
-<div class="top-bar d-flex">
-    <!-- Language Dropdown -->
-    <div class="dropdown">
-      <button class="btn btn-light dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-        اللغة
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="languageDropdown">
-        <li><a class="dropdown-item" href="#">عربي</a></li>
-        <li><a class="dropdown-item" href="#">English</a></li>
-        <li><a class="dropdown-item" href="#">Urdu</a></li>
-        <li><a class="dropdown-item" href="#">Türkçe</a></li>
-      </ul>
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="logo">
+      <a href="home.html">
+        <img src="logo.png" alt="Logo">
+      </a>
     </div>
-
-    
-  <!-- Logo -->
-   
-  <a href="home.html">
-    <div class="logo mx-auto">
-      <img src="logo.png" alt="Logo">
-    </div>
-  </a>
-  
-
-  <!-- Login Button -->
-  <div>
     <button class="btn btn-light">مرحبا زياد</button>
   </div>
-</div>
 
-<!-- Sidebar -->
-<div id="sidebar" class="sidebar hidden">
-  <a href="profile.html">
-    <span class="icon">👤</span>
-    <span class="text">Profile</span>
-  </a>
-  <a href="settings.html">
-    <span class="icon">⚙️</span>
-    <span class="text">Settings</span>
-  </a>
-  <a href="book-session.html">
-    <span class="icon">📅</span>
-    <span class="text">Book Session</span>
-  </a>
-  <a href="reserved-session.html">
-    <span class="icon">✅</span>
-    <span class="text">Reserved Session</span>
-  </a>
-  <a href="request-freelance.html">
-    <span class="icon">📋</span>
-    <span class="text">Request Freelance</span>
-  </a>
-</div>
-
-<!-- Toggle Sidebar Button -->
-<button id="toggleSidebarBtn" class="toggle-sidebar-btn">☰</button>
-
-
-<div class="profile-container">
-  <h2>Profile</h2>
-
-  <!-- Profile Picture Section -->
-<div class="text-center mb-4">
-    <div style="position: relative; display: inline-block;">
-      <img src="default-profile.png" alt="Profile Picture" class="rounded-circle" style="width: 150px; height: 150px; border: 3px solid teal;">
-      <button 
-        class="btn btn-primary rounded-circle" 
-        style="position: absolute; bottom: 10px; right: 10px; background-color: darkpurple; border: none; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">
-        <span style="font-size: 16px; color: white;">+</span>
-      </button>
-    </div>
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <a href="profile.html">
+      <span class="icon">👤</span>
+      <span class="text">Profile</span>
+    </a>
+    <a href="settings.html">
+      <span class="icon">⚙️</span>
+      <span class="text">Settings</span>
+    </a>
+    <a href="book-session.html">
+      <span class="icon">📅</span>
+      <span class="text">Book Session</span>
+    </a>
+    <a href="reserved-session.html">
+      <span class="icon">✅</span>
+      <span class="text">Reserved Session</span>
+    </a>
+    <a href="request-freelance.html">
+      <span class="icon">📋</span>
+      <span class="text">Request Freelance</span>
+    </a>
   </div>
-  
-  <form>
-    <!-- First Name -->
-    <div class="mb-3">
-      <label for="firstName" class="form-label">First Name</label>
-      <input type="text" class="form-control" id="firstName" placeholder="Enter your first name">
+
+  <!-- Toggle Sidebar Button -->
+  <button id="toggleSidebarBtn" class="toggle-sidebar-btn">☰</button>
+
+  <!-- Profile Container -->
+  <div class="profile-container">
+    <h2>Profile</h2>
+
+    <!-- Profile Picture Section -->
+    <div class="profile-picture">
+      <img src="profile-placeholder.jpg" alt="Profile Picture" id="profilePicture">
+      <button class="btn btn-light" onclick="addProfilePicture()">+</button>
+      <button class="btn btn-danger delete" onclick="deleteProfilePicture()">🗑️</button>
     </div>
 
-    <!-- Last Name -->
-    <div class="mb-3">
-      <label for="lastName" class="form-label">Last Name</label>
-      <input type="text" class="form-control" id="lastName" placeholder="Enter your last name">
-    </div>
-
-    <!-- Mobile -->
-    <div class="mb-3">
-      <label for="mobile" class="form-label">Mobile</label>
-      <input type="tel" class="form-control" id="mobile" placeholder="Enter your mobile number">
-    </div>
-
-    <!-- Email -->
-    <div class="mb-3">
-      <label for="email" class="form-label">Email</label>
-      <input type="email" class="form-control" id="email" placeholder="Enter your email">
-    </div>
-
-    <!-- Google Map -->
-    <div class="mb-3">
-      <label for="googleMap" class="form-label">Location</label>
-      <div id="googleMap">
-        <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.835434509388!2d-122.4194156846773!3d37.7749292797599!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809c2cbe9b59%3A0x58249d9b1c0b12f6!2sSan%20Francisco%2C%20CA%2C%20USA!5e0!3m2!1sen!2s!4v1631853136346!5m2!1sen!2s" 
-          allowfullscreen="" 
-          loading="lazy">
-        </iframe>
+    <form>
+      <!-- Basic Info -->
+      <div class="mb-3">
+        <label for="firstName" class="form-label">First Name</label>
+        <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" disabled>
+        <button type="button" class="edit-btn" onclick="editField('firstName')">
+          <i class="bi bi-pencil"></i>
+        </button>
+        <button type="button" class="save-btn" onclick="saveField('firstName')">
+          <i class="bi bi-save"></i>
+        </button>
       </div>
-    </div>
+      <div class="mb-3">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" disabled>
+        <button type="button" class="edit-btn" onclick="editField('lastName')">
+          <i class="bi bi-pencil"></i>
+        </button>
+        <button type="button" class="save-btn" onclick="saveField('lastName')">
+          <i class="bi bi-save"></i>
+        </button>
+      </div>
 
-    <!-- Submit Button -->
-    <button type="submit" class="btn btn-primary w-100">Save Profile</button>
-  </form>
-</div>
+      <!-- Contact Info -->
+      <div class="mb-3">
+        <label for="mobile" class="form-label">Mobile</label>
+        <input type="tel" class="form-control" id="mobile" placeholder="Enter your mobile number" disabled>
+        <button type="button" class="edit-btn" onclick="editField('mobile')">
+          <i class="bi bi-pencil"></i>
+        </button>
+        <button type="button" class="save-btn" onclick="saveField('mobile')">
+          <i class="bi bi-save"></i>
+        </button>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter your email" disabled>
+        <button type="button" class="edit-btn" onclick="editField('email')">
+          <i class="bi bi-pencil"></i>
+        </button>
+        <button type="button" class="save-btn" onclick="saveField('email')">
+          <i class="bi bi-save"></i>
+        </button>
+      </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+      <!-- Address Section -->
+      <h4 class="mb-3" style="color: darkpurple;">Address</h4>
+      <div class="mb-3">
+        <label for="city" class="form-label">City</label>
+        <input type="text" class="form-control" id="city" placeholder="Enter your city" disabled>
+        <button type="button" class="edit-btn" onclick="editField('city')">
+          <i class="bi bi-pencil"></i>
+        </button>
+        <button type="button" class="save-btn" onclick="saveField('city')">
+          <i class="bi bi-save"></i>
+        </button>
+      </div>
+      <div class="mb-3">
+        <label for="district" class="form-label">District</label>
+        <input type="text" class="form-control" id="district" placeholder="Enter your district" disabled>
+        <button type="button" class="edit-btn" onclick="editField('district')">
+          <i class="bi bi-pencil"></i>
+        </button>
+        <button type="button" class="save-btn" onclick="saveField('district')">
+          <i class="bi bi-save"></i>
+        </button>
+      </div>
+      <div class="mb-3">
+        <label for="street" class="form-label">Street</label>
+        <input type="text" class="form-control" id="street" placeholder="Enter your street" disabled>
+        <button type="button" class="edit-btn" onclick="editField('street')">
+          <i class="bi bi-pencil"></i>
+        </button>
+        <button type="button" class="save-btn" onclick="saveField('street')">
+          <i class="bi bi-save"></i>
+        </button>
+      </div>
+
+      <!-- Google Map Location -->
+      <div class="mb-3">
+        <label for="googleMap" class="form-label">Google Map Location</label>
+        <input type="text" class="form-control location-input" id="googleMap" placeholder="Enter your location" disabled>
+        <button type="button" class="btn location-btn">Upload Location</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2024 Barber Freelancers Booking</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function editField(fieldId) {
+      document.getElementById(fieldId).disabled = false;
+      document.querySelector(`#${fieldId} ~ .edit-btn`).style.display = 'none';
+      document.querySelector(`#${fieldId} ~ .save-btn`).style.display = 'inline';
+    }
+
+    function saveField(fieldId) {
+      document.getElementById(fieldId).disabled = true;
+      document.querySelector(`#${fieldId} ~ .edit-btn`).style.display = 'inline';
+      document.querySelector(`#${fieldId} ~ .save-btn`).style.display = 'none';
+    }
+
+    function addProfilePicture() {
+      alert("Add your profile picture logic here.");
+    }
+
+    function deleteProfilePicture() {
+      document.getElementById('profilePicture').src = 'profile-placeholder.jpg'; // Reset to placeholder
+    }
+  </script>
 </body>
 </html>
