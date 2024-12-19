@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile Page</title>
+  <link rel="icon" href="favicon.png" type="image/png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
@@ -11,78 +12,105 @@
       margin-right: 270px; /* Adjust for the sidebar */
     }
 
-    /* Top Bar */
-    .top-bar {
-      background-color: teal;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      color: white;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1050; /* Ensures it stays above the sidebar */
-    }
+    header {
+  background-color: white;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1050;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional for a subtle shadow */
+}
 
-    .top-bar .logo img {
-      height: 50px;
-      width: auto;
-    }
+header .btn-teal {
+  background-color: teal; /* Teal color */
+  border-color: teal;
+  color: white;
+}
+
+header .btn-teal:hover {
+  background-color: #005f5f; /* Slightly darker teal on hover */
+}
+
+.logo img {
+  height: 60px; /* Increased size */
+  width: auto;
+}
+
 
     /* Sidebar */
     .sidebar {
-      position: fixed;
-      top: 60px; /* Below the top bar */
-      right: 0;
-      height: calc(100% - 60px); /* Adjust height to avoid overlap */
-      background-color: darkpurple;
-      color: white;
-      width: 250px;
-      overflow-x: hidden;
-      transition: width 0.3s ease;
-      z-index: 1040; /* Below the top bar */
-    }
-
-    .sidebar.hidden {
-      width: 70px;
-    }
-
-    .sidebar a {
-      display: flex;
-      align-items: center;
-      color: white;
-      padding: 10px 20px;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
-    }
-
-    .sidebar a:hover {
-      background-color: teal;
-    }
-
-    .sidebar .icon {
-      font-size: 20px;
-      margin-right: 15px;
-    }
-
-    .sidebar.hidden .text {
-      display: none;
-    }
-
-    .toggle-sidebar-btn {
-      position: fixed;
-      top: 70px; /* Below the top bar */
-      right: 260px;
-      background-color: teal;
-      color: white;
-      border: none;
-      padding: 10px;
-      cursor: pointer;
-      z-index: 1060; /* Above the sidebar */
-    }
-
+    position: fixed;
+    top: 60px; /* Match header height */
+    right: 0;
+    height: calc(100% - 60px); /* Start below header */
+    background-color: darkpurple;
+    color: white;
+    overflow-x: hidden;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    z-index: 1040; /* Below the header */
+  }
+  .sidebar.hidden {
+    width: 70px;
+    background-color: white;
+  }
+  .sidebar.visible {
+    width: 250px;
+    background-color: teal;
+  }
+  .sidebar a {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    text-decoration: none;
+    color: inherit;
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
+    transition: background-color 0.3s ease;
+  }
+  .sidebar a:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  .sidebar .icon {
+    font-size: 20px;
+    transition: margin-right 0.3s ease, margin-left 0.3s ease;
+  }
+  .sidebar .text {
+    white-space: nowrap;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, margin-left 0.3s ease;
+  }
+  .sidebar.hidden .icon {
+    margin: auto; /* Center icons vertically when sidebar is hidden */
+  }
+  .sidebar.hidden .text {
+    display: none; /* Hide text */
+  }
+  .sidebar.visible .icon {
+    margin-right: auto;
+  }
+  .sidebar.visible .text {
+    opacity: 1;
+    margin-left: 15px;
+  }
+  .toggle-sidebar-btn {
+    position: relative;
+    top: 10px;
+    right: auto;
+    left: 10px;
+    background-color: teal;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1060; /* Above sidebar */
+    margin-bottom: 10px; /* Add space below the button */
+  }
     /* Profile Container */
     .profile-container {
       margin-right: 270px; /* Leave space for the sidebar */
@@ -119,14 +147,16 @@
     }
 
     footer {
-      background-color: darkblue;
-      color: white;
-      text-align: center;
-      padding: 10px 0;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-    }
+  background-color: darkblue; /* Set background color to dark purple */
+  color: white; /* Set text color to white */
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-weight: bold; /* Make the text bold */
+}
+
 
     /* Edit and Save Button Styles */
     .edit-btn, .save-btn {
@@ -194,46 +224,68 @@
   </style>
 </head>
 <body>
-  <!-- Top Bar -->
-  <div class="top-bar">
-    <div class="logo">
-      <a href="home.html">
-        <img src="logo.png" alt="Logo">
-      </a>
+  <header>
+    <!-- Language Dropdown -->
+    <div class="dropdown">
+      <button class="btn btn-teal dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        اللغة
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+        <li><a class="dropdown-item" href="#">عربي</a></li>
+        <li><a class="dropdown-item" href="#">English</a></li>
+        <li><a class="dropdown-item" href="#">Urdu</a></li>
+        <li><a class="dropdown-item" href="#">Türkçe</a></li>
+      </ul>
     </div>
-    <button class="btn btn-light">مرحبا زياد</button>
-  </div>
-
+  
+    <!-- Login Button -->
+    <div>
+      <button class="btn btn-teal mx-auto" data-bs-toggle="modal" data-bs-target="#emailModal">مرحبا زياد </button>
+    </div>
+  
+    <!-- Logo -->
+    <a href="home.html" class="logo">
+      <img src="logo.png" alt="Logo" style="height: 60px; width: auto;">
+    </a>
+  </header>
+  
   <!-- Sidebar -->
-  <div id="sidebar" class="sidebar">
-    <a href="profile.html">
-      <span class="icon">👤</span>
-      <span class="text">Profile</span>
-    </a>
-    <a href="settings.html">
-      <span class="icon">⚙️</span>
-      <span class="text">Settings</span>
-    </a>
-    <a href="book-session.html">
-      <span class="icon">📅</span>
-      <span class="text">Book Session</span>
-    </a>
-    <a href="reserved-session.html">
-      <span class="icon">✅</span>
-      <span class="text">Reserved Session</span>
-    </a>
-    <a href="request-freelance.html">
-      <span class="icon">📋</span>
-      <span class="text">Request Freelance</span>
-    </a>
-  </div>
-
-  <!-- Toggle Sidebar Button -->
+<div id="sidebar" class="sidebar hidden">
   <button id="toggleSidebarBtn" class="toggle-sidebar-btn">☰</button>
+  <a href="profile.html">
+    <span class="icon" style="margin-right: auto;">👤</span>
+    <span class="text">الملف الشخصي</span>
+  </a>
+  <a href="settings.html">
+    <span class="icon">⚙️</span>
+    <span class="text">الإعدادات</span>
+  </a>
+  <a href="book-session.html">
+    <span class="icon">📅</span>
+    <span class="text">حجز جلسة</span>
+  </a>
+  <a href="reserved-session.html">
+    <span class="icon">✅</span>
+    <span class="text">الجلسات المحجوزة</span>
+  </a>
+  <a href="request-freelance.html">
+    <span class="icon">📋</span>
+    <span class="text">طلب العمل الحر</span>
+  </a>
+</div>
 
+<script>
+  const sidebar = document.getElementById('sidebar');
+  const toggleSidebarBtn = document.getElementById('toggleSidebarBtn');
+
+  toggleSidebarBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('hidden');
+    sidebar.classList.toggle('visible');
+  });
+</script>
   <!-- Profile Container -->
   <div class="profile-container">
-    <h2>Profile</h2>
+    <h2>الملف الشخصي</h2>
 
     <!-- Profile Picture Section -->
     <div class="profile-picture">
@@ -245,7 +297,7 @@
     <form>
       <!-- Basic Info -->
       <div class="mb-3">
-        <label for="firstName" class="form-label">First Name</label>
+        <label for="firstName" class="form-label">الاسم الاول</label>
         <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" disabled>
         <button type="button" class="edit-btn" onclick="editField('firstName')">
           <i class="bi bi-pencil"></i>
@@ -255,7 +307,7 @@
         </button>
       </div>
       <div class="mb-3">
-        <label for="lastName" class="form-label">Last Name</label>
+        <label for="lastName" class="form-label">الاسم الاخير</label>
         <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" disabled>
         <button type="button" class="edit-btn" onclick="editField('lastName')">
           <i class="bi bi-pencil"></i>
@@ -267,7 +319,7 @@
 
       <!-- Contact Info -->
       <div class="mb-3">
-        <label for="mobile" class="form-label">Mobile</label>
+        <label for="mobile" class="form-label">رقم الجوال</label>
         <input type="tel" class="form-control" id="mobile" placeholder="Enter your mobile number" disabled>
         <button type="button" class="edit-btn" onclick="editField('mobile')">
           <i class="bi bi-pencil"></i>
@@ -288,9 +340,9 @@
       </div>
 
       <!-- Address Section -->
-      <h4 class="mb-3" style="color: darkpurple;">Address</h4>
+      <h4 class="mb-3" style="color: darkpurple;">العنوان</h4>
       <div class="mb-3">
-        <label for="city" class="form-label">City</label>
+        <label for="city" class="form-label">المدينة</label>
         <input type="text" class="form-control" id="city" placeholder="Enter your city" disabled>
         <button type="button" class="edit-btn" onclick="editField('city')">
           <i class="bi bi-pencil"></i>
@@ -300,7 +352,7 @@
         </button>
       </div>
       <div class="mb-3">
-        <label for="district" class="form-label">District</label>
+        <label for="district" class="form-label">الحي</label>
         <input type="text" class="form-control" id="district" placeholder="Enter your district" disabled>
         <button type="button" class="edit-btn" onclick="editField('district')">
           <i class="bi bi-pencil"></i>
@@ -310,7 +362,7 @@
         </button>
       </div>
       <div class="mb-3">
-        <label for="street" class="form-label">Street</label>
+        <label for="street" class="form-label">الشارع</label>
         <input type="text" class="form-control" id="street" placeholder="Enter your street" disabled>
         <button type="button" class="edit-btn" onclick="editField('street')">
           <i class="bi bi-pencil"></i>
@@ -322,16 +374,16 @@
 
       <!-- Google Map Location -->
       <div class="mb-3">
-        <label for="googleMap" class="form-label">Google Map Location</label>
+        <label for="googleMap" class="form-label">Google Map موقع</label>
         <input type="text" class="form-control location-input" id="googleMap" placeholder="Enter your location" disabled>
-        <button type="button" class="btn location-btn">Upload Location</button>
+        <button type="button" class="btn location-btn">تحديث الموقع</button>
       </div>
     </form>
   </div>
 
   <!-- Footer -->
   <footer>
-    <p>© 2024 Barber Freelancers Booking</p>
+    &copy; 2024 جميع الحقوق محفوظة للحلاق 
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

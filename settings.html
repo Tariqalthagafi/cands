@@ -4,96 +4,114 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>صفحة الإعدادات</title> <!-- Title in Arabic -->
+  <link rel="icon" href="favicon.png" type="image/png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
       font-family: 'IBM Plex Sans Arabic', sans-serif;
       margin-bottom: 60px; /* For footer spacing */
-      direction: rtl; /* Set RTL for Arabic content */
     }
-    .top-bar {
-      background-color: teal;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      color: white;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1050; /* Ensures it stays above the sidebar */
-    }
-    .top-bar .dropdown-menu a {
-      color: darkpurple !important;
-    }
-    .logo img {
-      height: 50px; /* Resize logo */
-      width: auto;  /* Maintain aspect ratio */
-    }
-    .sidebar {
-      position: fixed;
-      top: 60px; /* Leaves space for the top bar */
-      right: 0;
-      height: calc(100% - 60px); /* Adjust height to avoid overlap */
-      background-color: darkpurple;
-      color: white;
-      overflow-x: hidden;
-      transition: width 0.3s ease;
-      z-index: 1040; /* Places it under the top bar */
-    }
-    .sidebar.hidden {
-      width: 70px;
-    }
-    .sidebar.visible {
-      width: 250px;
-    }
-    .sidebar a {
-      display: flex;
-      align-items: center;
-      color: white;
-      padding: 10px 20px;
-      text-decoration: none;
-    }
-    .sidebar a {
-      display: flex;
-      align-items: center;
-      color: darkblue;
-      padding: 10px 20px;
-      text-decoration: none;
-    }
-    .sidebar a:hover {
-      background-color: darkblue;
-    }
-    .sidebar .icon {
-      font-size: 20px;
-      margin-left: 15px; /* Adjust icon margin to match RTL direction */
-    }
-    .sidebar.hidden .text {
-      display: none;
-    }
-    footer {
-      background-color: darkblue;
-      color: white;
-      text-align: center;
-      padding: 10px 0;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-    }
-    .toggle-sidebar-btn {
-      position: fixed;
-      top: 70px; /* Below the top bar */
-      right: 80px;
-      background-color: teal;
-      color: white;
-      border: none;
-      padding: 10px;
-      cursor: pointer;
-      z-index: 1060; /* Ensures it stays above the sidebar */
-    }
+    header {
+  background-color: white;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1050;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional for a subtle shadow */
+}
+
+header .btn-teal {
+  background-color: teal; /* Teal color */
+  border-color: teal;
+  color: white;
+}
+
+header .btn-teal:hover {
+  background-color: #005f5f; /* Slightly darker teal on hover */
+}
+
+.logo img {
+  height: 60px; /* Increased size */
+  width: auto;
+}
+
+.sidebar {
+    position: fixed;
+    top: 60px; /* Match header height */
+    right: 0;
+    height: calc(100% - 60px); /* Start below header */
+    background-color: darkpurple;
+    color: white;
+    overflow-x: hidden;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    z-index: 1040; /* Below the header */
+  }
+  .sidebar.hidden {
+    width: 70px;
+    background-color: white;
+  }
+  .sidebar.visible {
+    width: 250px;
+    background-color: teal;
+  }
+  .sidebar a {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    text-decoration: none;
+    color: inherit;
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
+    transition: background-color 0.3s ease;
+  }
+  .sidebar a:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  .sidebar .icon {
+    font-size: 20px;
+    transition: margin-right 0.3s ease, margin-left 0.3s ease;
+  }
+  .sidebar .text {
+    white-space: nowrap;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, margin-left 0.3s ease;
+  }
+  .sidebar.hidden .icon {
+    margin: auto; /* Center icons vertically when sidebar is hidden */
+  }
+  .sidebar.hidden .text {
+    display: none; /* Hide text */
+  }
+  .sidebar.visible .icon {
+    margin-right: auto;
+  }
+  .sidebar.visible .text {
+    opacity: 1;
+    margin-left: 15px;
+  }
+  .toggle-sidebar-btn {
+    position: relative;
+    top: 10px;
+    right: auto;
+    left: 10px;
+    background-color: teal;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1060; /* Above sidebar */
+    margin-bottom: 10px; /* Add space below the button */
+  }
     
     .profile-container {
+      direction: rtl; /* Set RTL for Arabic content */
+
       max-width: 800px;
       margin: 20px auto;
       padding: 20px;
@@ -106,6 +124,7 @@
       text-align: center;
       color: darkpurple;
       margin-bottom: 20px;
+      
     }
     .form-label {
       color: teal;
@@ -150,65 +169,82 @@
       background-color: red;
       border-color: red;
     }
+
+    footer {
+  background-color: darkblue; /* Set background color to dark purple */
+  color: white; /* Set text color to white */
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-weight: bold; /* Make the text bold */
+}
+
   </style>
 </head>
 <body>
 
-<!-- Top Bar -->
-<div class="top-bar d-flex">
-  <!-- Language Dropdown -->
-  <div class="dropdown">
-    <button class="btn btn-light dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-      اللغة
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="languageDropdown">
-      <li><a class="dropdown-item" href="#">عربي</a></li>
-      <li><a class="dropdown-item" href="#">English</a></li>
-      <li><a class="dropdown-item" href="#">Urdu</a></li>
-      <li><a class="dropdown-item" href="#">Türkçe</a></li>
-    </ul>
-  </div>
-
-  <!-- Logo -->
-  <a href="home.html">
-    <div class="logo mx-auto">
-      <img src="logo.png" alt="Logo">
+  <header>
+    <!-- Language Dropdown -->
+    <div class="dropdown">
+      <button class="btn btn-teal dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        اللغة
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+        <li><a class="dropdown-item" href="#">عربي</a></li>
+        <li><a class="dropdown-item" href="#">English</a></li>
+        <li><a class="dropdown-item" href="#">Urdu</a></li>
+        <li><a class="dropdown-item" href="#">Türkçe</a></li>
+      </ul>
     </div>
-  </a>
-
-  <!-- Login Button -->
-  <div>
-    <button class="btn btn-light">تسجيل دخول</button> <!-- Login button in Arabic -->
-  </div>
-</div>
+  
+    <!-- Login Button -->
+    <div>
+      <button class="btn btn-teal mx-auto" data-bs-toggle="modal" data-bs-target="#emailModal">مرحبا زياد </button>
+    </div>
+  
+    <!-- Logo -->
+    <a href="home.html" class="logo">
+      <img src="logo.png" alt="Logo" style="height: 60px; width: auto;">
+    </a>
+  </header>
+  
 
 <!-- Sidebar -->
 <div id="sidebar" class="sidebar hidden">
+  <button id="toggleSidebarBtn" class="toggle-sidebar-btn">☰</button>
   <a href="profile.html">
-    <span class="icon">👤</span>
-    <span class="text">الملف الشخصي</span> <!-- Profile in Arabic -->
+    <span class="icon" style="margin-right: auto;">👤</span>
+    <span class="text">الملف الشخصي</span>
   </a>
   <a href="settings.html">
     <span class="icon">⚙️</span>
-    <span class="text">الإعدادات</span> <!-- Settings in Arabic -->
+    <span class="text">الإعدادات</span>
   </a>
   <a href="book-session.html">
     <span class="icon">📅</span>
-    <span class="text">حجز الجلسة</span> <!-- Book Session in Arabic -->
+    <span class="text">حجز جلسة</span>
   </a>
   <a href="reserved-session.html">
     <span class="icon">✅</span>
-    <span class="text">الجلسات المحجوزة</span> <!-- Reserved Session in Arabic -->
+    <span class="text">الجلسات المحجوزة</span>
   </a>
   <a href="request-freelance.html">
     <span class="icon">📋</span>
-    <span class="text">طلب مستقل</span> <!-- Request Freelance in Arabic -->
+    <span class="text">طلب العمل الحر</span>
   </a>
 </div>
 
-<!-- Toggle Sidebar Button -->
-<button id="toggleSidebarBtn" class="toggle-sidebar-btn">☰</button>
+<script>
+  const sidebar = document.getElementById('sidebar');
+  const toggleSidebarBtn = document.getElementById('toggleSidebarBtn');
 
+  toggleSidebarBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('hidden');
+    sidebar.classList.toggle('visible');
+  });
+</script>
 <!-- Settings Container -->
 <div class="container">
   <h2>إعدادات الحساب</h2> <!-- Account Settings in Arabic -->
@@ -248,7 +284,9 @@
     </form>
   </div>
 </div>
-
+<footer>
+  &copy; 2024 جميع الحقوق محفوظة للحلاق 
+</footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
