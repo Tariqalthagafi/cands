@@ -7,6 +7,8 @@
   <link rel="icon" href="favicon.png" type="image/png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
 
   <style>
     body {
@@ -229,6 +231,10 @@ header .btn-teal:hover {
     <span class="icon">📋</span>
     <span class="text">طلب العمل الحر</span>
   </a>
+  <a href="referral.html">
+    <span class="icon">🔗</span>
+    <span class="text">الإحالات</span>
+  </a>
 </div>
 
 <script>
@@ -247,45 +253,53 @@ header .btn-teal:hover {
 
   <!-- List of Barber Cards -->
   <div class="row g-4">
-    <!-- Barber 1 -->
-    <div class="col-md-4">
-      <div class="card">
-        <img src="1.jpg" class="card-img-top" alt="Barber 1">
-        <div class="card-body">
-          <h5 class="card-title">احمد علي </h5>
-          <p class="card-text">صالون هنادي المالكي</p>
-          <p class="card-text">
-            <span class="star-rating">★★★★★</span>
-          </p>
-          <p class="card-text">العدد الكلي للجلسات: 120</p>
-          
-          <p class="card-text">العنوان: جدة, طريق الملك</p>
-          
-          <!-- Service Menu -->
-          <div class="service-menu">
-            <button class="btn dropdown-toggle" type="button" id="serviceDropdown1" data-bs-toggle="dropdown" aria-expanded="false">
-              الخدمات المقدمة
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="serviceDropdown1">
-              <li><a class="dropdown-item" href="#">شعر - $25 </a></li>
-              <li><a class="dropdown-item" href="#">لحية  - $25 </a></li>
-              <li><a class="dropdown-item" href="#">صبغة  - $25 </a></li>
-              <li><a class="dropdown-item" href="#">صنفرة - $25 </a></li>
-              <li><a class="dropdown-item" href="#">مساج - $25 </a></li>
-            </ul>
-          </div>
-    
-          
-        </div>
-        <div class="book-now-container">
-          <button class="btn btn-teal">احجز الآن</button>
-        </div>
+   <!-- Barber 1 -->
+<div class="col-md-4">
+  <div class="card position-relative">
+    <!-- Share Icon -->
+    <div class="position-absolute top-0 start-0 p-2">
+      <button class="btn btn-light btn-sm" title="مشاركة">
+        <i class="bi bi-share"></i>
+      </button>
+    </div>
+    <img src="1.jpg" class="card-img-top" alt="Barber 1">
+    <div class="card-body">
+      <h5 class="card-title">احمد علي </h5>
+      <p class="card-text">صالون هنادي المالكي</p>
+      <p class="card-text">
+        <span class="star-rating">★★★★★</span>
+      </p>
+      <p class="card-text">العدد الكلي للجلسات: 120</p>
+      <p class="card-text">العنوان: جدة, طريق الملك</p>
+      <!-- Service Menu -->
+      <div class="service-menu">
+        <button class="btn dropdown-toggle" type="button" id="serviceDropdown1" data-bs-toggle="dropdown" aria-expanded="false">
+          الخدمات المقدمة
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="serviceDropdown1">
+          <li><a class="dropdown-item" href="#">شعر - $25</a></li>
+          <li><a class="dropdown-item" href="#">لحية - $25</a></li>
+          <li><a class="dropdown-item" href="#">صبغة - $25</a></li>
+          <li><a class="dropdown-item" href="#">صنفرة - $25</a></li>
+          <li><a class="dropdown-item" href="#">مساج - $25</a></li>
+        </ul>
       </div>
     </div>
+    <div class="book-now-container">
+      <button class="btn btn-teal">احجز الآن</button>
+    </div>
+  </div>
+</div>
 
     <!-- Barber 2 -->
     <div class="col-md-4">
       <div class="card">
+        <!-- Share Icon -->
+    <div class="position-absolute top-0 start-0 p-2">
+      <button class="btn btn-light btn-sm" title="مشاركة">
+        <i class="bi bi-share"></i>
+      </button>
+    </div>
         <img src="2.jpg" class="card-img-top" alt="Barber 2">
         <div class="card-body">
           <h5 class="card-title">محمد خان</h5>
@@ -320,6 +334,12 @@ header .btn-teal:hover {
     <!-- Barber 3 -->
     <div class="col-md-4">
       <div class="card">
+        <!-- Share Icon -->
+    <div class="position-absolute top-0 start-0 p-2">
+      <button class="btn btn-light btn-sm" title="مشاركة">
+        <i class="bi bi-share"></i>
+      </button>
+    </div>
         <img src="3.jpg" class="card-img-top" alt="Barber 3">
         <div class="card-body">
           <h5 class="card-title">عمر يوسف</h5>

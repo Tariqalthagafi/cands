@@ -213,42 +213,45 @@ header .btn-teal:hover {
 
 <!-- Sidebar -->
 <div id="sidebar" class="sidebar hidden">
-  <button id="toggleSidebarBtn" class="toggle-sidebar-btn">☰</button>
-  <a href="profile.html">
-    <span class="icon" style="margin-right: auto;">👤</span>
-    <span class="text">الملف الشخصي</span>
-  </a>
-  <a href="settings.html">
-    <span class="icon">⚙️</span>
-    <span class="text">الإعدادات</span>
-  </a>
-  <a href="book-session.html">
-    <span class="icon">📅</span>
-    <span class="text">حجز جلسة</span>
-  </a>
-  <a href="reserved-session.html">
-    <span class="icon">✅</span>
-    <span class="text">الجلسات المحجوزة</span>
-  </a>
-  <a href="request-freelance.html">
-    <span class="icon">📋</span>
-    <span class="text">طلب العمل الحر</span>
-  </a>
-  <a href="referral.html">
-    <span class="icon">🔗</span>
-    <span class="text">الإحالات</span>
-  </a>
-</div>
+    <button id="toggleSidebarBtn" class="toggle-sidebar-btn">☰</button>
+    <a href="bprofile.html">
+      <span class="icon" style="margin-right: auto;">👤</span>
+      <span class="text">الملف الشخصي</span>
+    </a>
+    <a href="binformation.html">
+      <span class="icon">📋</span>
+      <span class="text">معلومات النشاط</span>
+    </a>
+    <a href="bsettings.html">
+      <span class="icon">⚙️</span>
+      <span class="text">الإعدادات</span>
+    </a>
+    <a href="session-planner.html">
+      <span class="icon">📅</span>
+      <span class="text">جدول المواعيد</span>
+    </a>
+    <a href="breserved-session.html">
+      <span class="icon">✅</span>
+      <span class="text">الجلسات المحجوزة</span>
+    </a>
+    <a href="breferral.html">
+      <span class="icon">🔗</span>
+      <span class="text">الإحالات</span>
+    </a>
+  </div>
+  
+  <script>
+    const sidebar = document.getElementById('sidebar');
+    const toggleSidebarBtn = document.getElementById('toggleSidebarBtn');
+  
+    toggleSidebarBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('hidden');
+      sidebar.classList.toggle('visible');
+    });
+  </script>
+  
 
-<script>
-  const sidebar = document.getElementById('sidebar');
-  const toggleSidebarBtn = document.getElementById('toggleSidebarBtn');
 
-  toggleSidebarBtn.addEventListener('click', () => {
-    sidebar.classList.toggle('hidden');
-    sidebar.classList.toggle('visible');
-  });
-</script>
 <!-- Settings Container -->
 <div class="container">
   <h2>إعدادات الحساب</h2> <!-- Account Settings in Arabic -->

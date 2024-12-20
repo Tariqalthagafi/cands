@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barber Freelancers Booking</title>
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'IBM Plex Sans Arabic', sans-serif;
+      margin-bottom: 60px; /* For footer spacing */
+    }
+    header {
+  background-color: white;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1050;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional for a subtle shadow */
+}
+
+header .btn-teal {
+  background-color: teal; /* Teal color */
+  border-color: teal;
+  color: white;
+}
+
+header .btn-teal:hover {
+  background-color: teal; /* Slightly darker teal on hover */
+}
+
+.logo img {
+  height: 60px; /* Increased size */
+  width: auto;
+}
+
+.sidebar {
+    position: fixed;
+    top: 60px; /* Match header height */
+    right: 0;
+    height: calc(100% - 60px); /* Start below header */
+    background-color: darkpurple;
+    color: white;
+    overflow-x: hidden;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    z-index: 1040; /* Below the header */
+  }
+  .sidebar.hidden {
+    width: 70px;
+    background-color: white;
+  }
+  .sidebar.visible {
+    width: 250px;
+    background-color: teal;
+  }
+  .sidebar a {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    text-decoration: none;
+    color: inherit;
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
+    transition: background-color 0.3s ease;
+  }
+  .sidebar a:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  .sidebar .icon {
+    font-size: 20px;
+    transition: margin-right 0.3s ease, margin-left 0.3s ease;
+  }
+  .sidebar .text {
+    white-space: nowrap;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, margin-left 0.3s ease;
+  }
+  .sidebar.hidden .icon {
+    margin: auto; /* Center icons vertically when sidebar is hidden */
+  }
+  .sidebar.hidden .text {
+    display: none; /* Hide text */
+  }
+  .sidebar.visible .icon {
+    margin-right: auto;
+  }
+  .sidebar.visible .text {
+    opacity: 1;
+    margin-left: 15px;
+  }
+  .toggle-sidebar-btn {
+    position: relative;
+    top: 10px;
+    right: auto;
+    left: 10px;
+    background-color: teal;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1060; /* Above sidebar */
+    margin-bottom: 10px; /* Add space below the button */
+  }
+  .shop-name-container {
+    margin-top: 80px; /* Adjust this value as needed */
+  }
+    footer {
+  background-color: darkblue; /* Set background color to dark purple */
+  color: white; /* Set text color to white */
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-weight: bold; /* Make the text bold */
+}
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <!-- Language Dropdown -->
+    <div class="dropdown">
+      <button class="btn btn-success dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        اللغة
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+        <li><a class="dropdown-item" href="#">عربي</a></li>
+        <li><a class="dropdown-item" href="#">English</a></li>
+        <li><a class="dropdown-item" href="#">Urdu</a></li>
+        <li><a class="dropdown-item" href="#">Türkçe</a></li>
+      </ul>
+    </div>
+  
+    <!-- Login Button -->
+    <div>
+      <button class="btn btn-success mx-auto" data-bs-toggle="modal" data-bs-target="#emailModal">تسجيل دخول</button>
+    </div>
+  
+    <!-- Logo -->
+    <a href="home.html" class="logo">
+      <img src="logo.png" alt="Logo" style="height: 60px; width: auto;">
+    </a>
+  </header>
+  
+
+<!-- Sidebar -->
+<div id="sidebar" class="sidebar hidden">
+  <button id="toggleSidebarBtn" class="toggle-sidebar-btn">☰</button>
+  <a href="bprofile.html">
+    <span class="icon" style="margin-right: auto;">👤</span>
+    <span class="text">الملف الشخصي</span>
+  </a>
+  <a href="binformation.html">
+    <span class="icon">📋</span>
+    <span class="text">معلومات النشاط</span>
+  </a>
+  <a href="bsettings.html">
+    <span class="icon">⚙️</span>
+    <span class="text">الإعدادات</span>
+  </a>
+  <a href="session-planner.html">
+    <span class="icon">📅</span>
+    <span class="text">جدول المواعيد</span>
+  </a>
+  <a href="breserved-session.html">
+    <span class="icon">✅</span>
+    <span class="text">الجلسات المحجوزة</span>
+  </a>
+  <a href="breferral.html">
+    <span class="icon">🔗</span>
+    <span class="text">الإحالات</span>
+  </a>
+</div>
+
+<script>
+  const sidebar = document.getElementById('sidebar');
+  const toggleSidebarBtn = document.getElementById('toggleSidebarBtn');
+
+  toggleSidebarBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('hidden');
+    sidebar.classList.toggle('visible');
+  });
+</script>
+
+<div class="container mt-4">
+    <!-- Shop Name -->
+    <div class="shop-name-container">
+        <label for="shopNameField" class="form-label">اسم الصالون:</label>
+        <div class="input-group">
+          <input type="text" id="shopNameField" class="form-control" value="صالون هنادي المالكي" disabled>
+          <button id="editButton" class="btn btn-outline-primary" onclick="enableEdit()">تعديل</button>
+          <button id="saveButton" class="btn btn-outline-success d-none" onclick="saveEdit()">حفظ</button>
+        </div>
+      </div>
+      
+  
+    <!-- Barber Menu -->
+    <div class="barber-menu mb-4">
+      <h5 class="mb-3">قائمة الخدمات</h5>
+      <form id="barberMenuForm">
+        <div class="row">
+          <!-- Generate 10 services dynamically -->
+          <div class="col-md-6 mb-3" id="services">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="service1">
+              <label class="form-check-label" for="service1">قص شعر</label>
+              <input type="number" class="form-control mt-2" placeholder="السعر بالدولار" style="width: 120px;">
+            </div>
+            <div class="form-check mt-3">
+              <input class="form-check-input" type="checkbox" id="service2">
+              <label class="form-check-label" for="service2">لحية</label>
+              <input type="number" class="form-control mt-2" placeholder="السعر بالدولار" style="width: 120px;">
+            </div>
+            <div class="form-check mt-3">
+                <input class="form-check-input" type="checkbox" id="service2">
+                <label class="form-check-label" for="service2">حلاقة شعر موس</label>
+                <input type="number" class="form-control mt-2" placeholder="السعر بالدولار" style="width: 120px;">
+              </div>
+              <div class="form-check mt-3">
+                <input class="form-check-input" type="checkbox" id="service2">
+                <label class="form-check-label" for="service2">شمع الوجه</label>
+                <input type="number" class="form-control mt-2" placeholder="السعر بالدولار" style="width: 120px;">
+              </div>
+              <div class="form-check mt-3">
+                <input class="form-check-input" type="checkbox" id="service2">
+                <label class="form-check-label" for="service2">بخار </label>
+                <input type="number" class="form-control mt-2" placeholder="السعر بالدولار" style="width: 120px;">
+              </div>
+              <div class="form-check mt-3">
+                <input class="form-check-input" type="checkbox" id="service2">
+                <label class="form-check-label" for="service2">قص شعر اطفال </label>
+                <input type="number" class="form-control mt-2" placeholder="السعر بالدولار" style="width: 120px;">
+              </div>
+              <div class="form-check mt-3">
+                <input class="form-check-input" type="checkbox" id="service2">
+                <label class="form-check-label" for="service2">غسيل شعر </label>
+                <input type="number" class="form-control mt-2" placeholder="السعر بالدولار" style="width: 120px;">
+              </div>
+              <div class="form-check mt-3">
+                <input class="form-check-input" type="checkbox" id="service2">
+                <label class="form-check-label" for="service2">نحته</label>
+                <input type="number" class="form-control mt-2" placeholder="السعر بالدولار" style="width: 120px;">
+              </div>
+              <div class="form-check mt-3">
+                <input class="form-check-input" type="checkbox" id="service2">
+                <label class="form-check-label" for="service2">حلاقة مكينه</label>
+                <input type="number" class="form-control mt-2" placeholder="السعر بالدولار" style="width: 120px;">
+              </div>
+              <div class="form-check mt-3">
+                <input class="form-check-input" type="checkbox" id="service2">
+                <label class="form-check-label" for="service2"> حلاقة لحية مكينه</label>
+                <input type="number" class="form-control mt-2" placeholder="السعر بالدولار" style="width: 120px;">
+              </div>
+            <!-- Add more services similarly -->
+            <!-- Use this pattern for all 10 services -->
+          </div>
+        </div>
+      </form>
+    </div>
+  
+    <!-- Barber Portfolio -->
+    <div class="barber-portfolio mb-4">
+      <h5 class="mb-3">معرض الصور</h5>
+      <label for="portfolioUpload" class="form-label">تحميل الصور (الحد الأقصى: 5 صور)</label>
+      <input type="file" id="portfolioUpload" class="form-control" multiple accept="image/*">
+      <div id="portfolioPreview" class="d-flex flex-wrap mt-3">
+        <!-- Thumbnails of uploaded images will appear here -->
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Edit and Save Shop Name
+    const shopNameInput = document.getElementById('shopName');
+    const editShopNameBtn = document.getElementById('editShopName');
+    const saveShopNameBtn = document.getElementById('saveShopName');
+  
+    editShopNameBtn.addEventListener('click', () => {
+      shopNameInput.readOnly = false;
+      editShopNameBtn.style.display = 'none';
+      saveShopNameBtn.style.display = 'inline-block';
+    });
+  
+    saveShopNameBtn.addEventListener('click', () => {
+      shopNameInput.readOnly = true;
+      editShopNameBtn.style.display = 'inline-block';
+      saveShopNameBtn.style.display = 'none';
+    });
+  
+    // Portfolio Image Upload
+    const portfolioUpload = document.getElementById('portfolioUpload');
+    const portfolioPreview = document.getElementById('portfolioPreview');
+  
+    portfolioUpload.addEventListener('change', () => {
+      portfolioPreview.innerHTML = ''; // Clear previous previews
+      const files = Array.from(portfolioUpload.files);
+  
+      if (files.length > 5) {
+        alert('يمكنك تحميل 5 صور كحد أقصى.');
+        portfolioUpload.value = ''; // Reset input
+        return;
+      }
+  
+      files.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.alt = 'Barber Style';
+          img.style = 'width: 100px; height: 100px; object-fit: cover; margin: 5px;';
+          portfolioPreview.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+      });
+    });
+  </script>
+
+<!-- Footer -->
+<footer>
+  &copy; 2024 جميع الحقوق محفوظة للحلاق 
+</footer>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
