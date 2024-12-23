@@ -182,7 +182,64 @@
         </div>
       </div>
       
-  
+      <form>
+        
+    
+        <!-- Contact Info -->
+        <div class="mb-3">
+          <label for="mobile" class="form-label">رقم الجوال</label>
+          <input type="tel" class="form-control" id="mobile" placeholder="Enter your mobile number" disabled>
+          <button type="button" class="edit-btn" onclick="editField('mobile')">
+            <i class="bi bi-pencil"></i>
+          </button>
+          <button type="button" class="save-btn" onclick="saveField('mobile')">
+            <i class="bi bi-save"></i>
+          </button>
+        </div>
+        
+    
+        <!-- Address Section -->
+        <h4 class="mb-3" style="color: darkpurple;">العنوان</h4>
+        <div class="mb-3">
+          <label for="city" class="form-label">المدينة</label>
+          <input type="text" class="form-control" id="city" placeholder="Enter your city" disabled>
+          <button type="button" class="edit-btn" onclick="editField('city')">
+            <i class="bi bi-pencil"></i>
+          </button>
+          <button type="button" class="save-btn" onclick="saveField('city')">
+            <i class="bi bi-save"></i>
+          </button>
+        </div>
+        <div class="mb-3">
+          <label for="district" class="form-label">الحي</label>
+          <input type="text" class="form-control" id="district" placeholder="Enter your district" disabled>
+          <button type="button" class="edit-btn" onclick="editField('district')">
+            <i class="bi bi-pencil"></i>
+          </button>
+          <button type="button" class="save-btn" onclick="saveField('district')">
+            <i class="bi bi-save"></i>
+          </button>
+        </div>
+        <div class="mb-3">
+          <label for="street" class="form-label">الشارع</label>
+          <input type="text" class="form-control" id="street" placeholder="Enter your street" disabled>
+          <button type="button" class="edit-btn" onclick="editField('street')">
+            <i class="bi bi-pencil"></i>
+          </button>
+          <button type="button" class="save-btn" onclick="saveField('street')">
+            <i class="bi bi-save"></i>
+          </button>
+        </div>
+    
+     <!-- Google Map Location -->
+     <div class="mb-3">
+      <label for="googleMap" class="form-label">Google Map موقع</label>
+      <input type="text" class="form-control location-input" id="googleMap" placeholder="Enter your location" disabled>
+      <button type="button" class="btn location-btn">تحديث الموقع</button>
+    </div>
+      </form>
+
+     
     <!-- Barber Menu -->
     <div class="barber-menu mb-4">
       <h5 class="mb-3">قائمة الخدمات</h5>

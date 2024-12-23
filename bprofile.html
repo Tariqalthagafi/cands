@@ -171,7 +171,67 @@
     });
   </script>
 
+<!-- Profile Container -->
+<div class="profile-container">
+  <h2>الملف الشخصي</h2>
 
+  <!-- Profile Picture Section -->
+  <div class="profile-picture">
+    <img src="profile-placeholder.jpg" alt="Profile Picture" id="profilePicture">
+    <button class="btn btn-light" onclick="addProfilePicture()">+</button>
+    <button class="btn btn-danger delete" onclick="deleteProfilePicture()">🗑️</button>
+  </div>
+
+  <form>
+    <!-- Basic Info -->
+    <div class="mb-3">
+      <label for="firstName" class="form-label">الاسم الاول</label>
+      <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" disabled>
+      <button type="button" class="edit-btn" onclick="editField('firstName')">
+        <i class="bi bi-pencil"></i>
+      </button>
+      <button type="button" class="save-btn" onclick="saveField('firstName')">
+        <i class="bi bi-save"></i>
+      </button>
+    </div>
+    <div class="mb-3">
+      <label for="lastName" class="form-label">الاسم الاخير</label>
+      <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" disabled>
+      <button type="button" class="edit-btn" onclick="editField('lastName')">
+        <i class="bi bi-pencil"></i>
+      </button>
+      <button type="button" class="save-btn" onclick="saveField('lastName')">
+        <i class="bi bi-save"></i>
+      </button>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="mb-3">
+      <label for="mobile" class="form-label">رقم الجوال</label>
+      <input type="tel" class="form-control" id="mobile" placeholder="Enter your mobile number" disabled>
+      <button type="button" class="edit-btn" onclick="editField('mobile')">
+        <i class="bi bi-pencil"></i>
+      </button>
+      <button type="button" class="save-btn" onclick="saveField('mobile')">
+        <i class="bi bi-save"></i>
+      </button>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter your email" disabled>
+      <button type="button" class="edit-btn" onclick="editField('email')">
+        <i class="bi bi-pencil"></i>
+      </button>
+      <button type="button" class="save-btn" onclick="saveField('email')">
+        <i class="bi bi-save"></i>
+      </button>
+    </div>
+
+    
+
+
+  </form>
+</div>
 <!-- Footer -->
 <footer>
   &copy; 2024 جميع الحقوق محفوظة للحلاق 
