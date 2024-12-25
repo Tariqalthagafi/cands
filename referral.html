@@ -58,7 +58,7 @@
 
     .sidebar.hidden {
       width: 70px;
-      background-color: white;
+      background-color: teal;
     }
 
     .sidebar.visible {
@@ -219,48 +219,50 @@
     <button id="toggleSidebarBtn" class="toggle-sidebar-btn">☰</button>
     
     <!-- Navigation Links -->
-    <a href="profile.html">
-      <span class="icon">👤</span>
-      <span class="text">الملف الشخصي</span>
+  <a href="profile.html">
+    <span class="icon bi bi-person"></span>
+    <span class="text">الملف الشخصي</span>
+  </a>
+  
+  <a href="book-session.html">
+    <span class="icon bi bi-shop-window"></span>
+    <span class="text">حجز جلسة</span>
+  </a>
+  <a href="reserved-session.html">
+    <span class="icon bi bi-scissors"></span>
+    <span class="text">الجلسات المحجوزة</span>
+  </a>
+  <a href="request-freelance.html">
+    <span class="icon bi bi-briefcase"></span>
+    <span class="text">طلب العمل الحر</span>
+  </a>
+  <a href="support.html">
+    <span class="icon bi bi-chat-left"></span>
+    <span class="text">طلب الدعم</span>
+  </a>
+  <a href="referral.html">
+    <span class="icon bi bi-link"></span>
+    <span class="text">الإحالات</span>
+  </a>
+  <a href="settings.html">
+    <span class="icon bi bi-gear"></span>
+    <span class="text">الإعدادات</span>
+  </a>
+  <!-- Language Selection -->
+  <div class="sidebar-item my-3">
+    <a href="#" class="d-flex align-items-center dropdown-toggle" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+      <span class="icon bi bi-translate"></span>
+      <span class="text">اللغة</span>
     </a>
-    <a href="book-session.html">
-      <span class="icon">📅</span>
-      <span class="text">حجز جلسة</span>
-    </a>
-    <a href="reserved-session.html">
-      <span class="icon">✅</span>
-      <span class="text">الجلسات المحجوزة</span>
-    </a>
-    <a href="request-freelance.html">
-      <span class="icon">📋</span>
-      <span class="text">طلب العمل الحر</span>
-    </a>
-    <a href="support.html">
-      <span class="icon">🌐</span>
-      <span class="text">طلب الدعم</span>
-    </a>
-    <a href="referral.html">
-      <span class="icon">🔗</span>
-      <span class="text">الإحالات</span>
-    </a>
-    <a href="settings.html">
-      <span class="icon">⚙️</span>
-      <span class="text">الإعدادات</span>
-    </a>
-    <!-- Language Selection -->
-    <div class="sidebar-item my-3">
-      <a href="#" class="d-flex align-items-center dropdown-toggle" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-        <span class="icon">🌐</span>
-        <span class="text">اللغة</span>
-      </a>
-      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
-        <li><a class="dropdown-item" href="#">عربي</a></li>
-        <li><a class="dropdown-item" href="#">English</a></li>
-        <li><a class="dropdown-item" href="#">Urdu</a></li>
-        <li><a class="dropdown-item" href="#">Türkçe</a></li>
-      </ul>
-    </div>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+      <li><a class="dropdown-item" href="#">عربي</a></li>
+      <li><a class="dropdown-item" href="#">English</a></li>
+      <li><a class="dropdown-item" href="#">Urdu</a></li>
+      <li><a class="dropdown-item" href="#">Türkçe</a></li>
+    </ul>
   </div>
+</div>
+
 
   <script>
     const sidebar = document.getElementById('sidebar');

@@ -60,7 +60,7 @@ header .btn-teal:hover {
   }
   .sidebar.hidden {
     width: 70px;
-    background-color: white;
+    background-color: teal;
   }
   .sidebar.visible {
     width: 250px;
@@ -201,40 +201,40 @@ header .btn-teal:hover {
   </div>
   <button id="toggleSidebarBtn" class="toggle-sidebar-btn">☰</button>
   
-  <!-- Navigation Links -->
-  <a href="profile.html">
-    <span class="icon">👤</span>
+   <!-- Navigation Links -->
+   <a href="profile.html">
+    <span class="icon bi bi-person"></span>
     <span class="text">الملف الشخصي</span>
   </a>
   
   <a href="book-session.html">
-    <span class="icon">📅</span>
+    <span class="icon bi bi-shop-window"></span>
     <span class="text">حجز جلسة</span>
   </a>
   <a href="reserved-session.html">
-    <span class="icon">✅</span>
+    <span class="icon bi bi-scissors"></span>
     <span class="text">الجلسات المحجوزة</span>
   </a>
   <a href="request-freelance.html">
-    <span class="icon">📋</span>
+    <span class="icon bi bi-briefcase"></span>
     <span class="text">طلب العمل الحر</span>
   </a>
   <a href="support.html">
-    <span class="icon">🌐</span>
+    <span class="icon bi bi-chat-left"></span>
     <span class="text">طلب الدعم</span>
   </a>
   <a href="referral.html">
-    <span class="icon">🔗</span>
+    <span class="icon bi bi-link"></span>
     <span class="text">الإحالات</span>
   </a>
   <a href="settings.html">
-    <span class="icon">⚙️</span>
+    <span class="icon bi bi-gear"></span>
     <span class="text">الإعدادات</span>
   </a>
   <!-- Language Selection -->
   <div class="sidebar-item my-3">
     <a href="#" class="d-flex align-items-center dropdown-toggle" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-      <span class="icon">🌐</span>
+      <span class="icon bi bi-translate"></span>
       <span class="text">اللغة</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
@@ -245,7 +245,6 @@ header .btn-teal:hover {
     </ul>
   </div>
 </div>
-
 
 
 <script>
@@ -264,62 +263,96 @@ header .btn-teal:hover {
 
   <!-- List of Barber Cards -->
   <div class="row g-4">
-    <!-- Barber 1 -->
-    <div class="col-md-4">
-      <div class="card position-relative">
-        <!-- Share Icon -->
-        <div class="position-absolute top-0 start-0 p-2">
-          <button class="btn btn-light btn-sm" title="مشاركة">
-            <i class="bi bi-share"></i>
-          </button>
-        </div>
-        <img src="1.jpg" class="card-img-top" alt="Barber 1">
-        <div class="card-body">
-          <h5 class="card-title">احمد علي </h5>
-          <p class="card-text">صالون هنادي المالكي</p>
-          <p class="card-text">
-            <span class="star-rating">★★★★★</span>
-          </p>
-          <p class="card-text">العدد الكلي للجلسات: 120</p>
-          <p class="card-text">العنوان: جدة, طريق الملك</p>
+  <!-- Barber 1 -->
+<div class="col-md-4">
+  <div class="card position-relative">
+    <!-- Share Icon -->
+    <div class="position-absolute top-0 start-0 p-2">
+      <button class="btn btn-light btn-sm" title="مشاركة">
+        <i class="bi bi-share"></i>
+      </button>
+    </div>
 
-          <!-- Service Menu -->
-          <div class="service-menu">
-            <button class="btn dropdown-toggle" type="button" id="serviceDropdown1" data-bs-toggle="dropdown" aria-expanded="false">
-              الخدمات المقدمة
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="serviceDropdown1">
-              <li><a class="dropdown-item" href="#">شعر - $25</a></li>
-              <li><a class="dropdown-item" href="#">لحية - $25</a></li>
-              <li><a class="dropdown-item" href="#">صبغة - $25</a></li>
-              <li><a class="dropdown-item" href="#">صنفرة - $25</a></li>
-              <li><a class="dropdown-item" href="#">مساج - $25</a></li>
-            </ul>
-          </div>
+    <!-- Image Slider -->
+    <div id="barber1Carousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="1.jpg" class="d-block w-100" alt="Barber 1 Image 1">
         </div>
-
-        <!-- Book Now Button -->
-        <div class="book-now-container">
-          <button class="btn btn-teal" data-toggle="expand-card">احجز الآن</button>
+        <div class="carousel-item">
+          <img src="8.jpg" class="d-block w-100" alt="Barber 1 Image 2">
         </div>
-
-        <!-- Session Times Container (Initially hidden) -->
-        <div class="session-times-container d-none">
-          <div class="session-times mt-3">
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="10:00">10:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="11:00">11:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="12:00">12:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="13:00">13:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="14:00">14:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="15:00">15:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="16:00">16:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="17:00">17:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="18:00">18:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="19:00">19:00</button>
-          </div>
+        <div class="carousel-item">
+          <img src="7.jpg" class="d-block w-100" alt="Barber 1 Image 3">
+        </div>
+        <div class="carousel-item">
+          <img src="9.jpg" class="d-block w-100" alt="Barber 1 Image 4">
+        </div>
+        <div class="carousel-item">
+          <img src="5.jpg" class="d-block w-100" alt="Barber 1 Image 5">
+        </div>
+        <div class="carousel-item">
+          <img src="6.jpg" class="d-block w-100" alt="Barber 1 Image 6">
         </div>
       </div>
+      <!-- Carousel Controls -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#barber1Carousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#barber1Carousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
+
+    <div class="card-body">
+      <h5 class="card-title">احمد علي</h5>
+      <p class="card-text">صالون هنادي المالكي</p>
+      <p class="card-text">
+        <span class="star-rating">★★★★★</span>
+      </p>
+      <p class="card-text">العدد الكلي للجلسات: 120</p>
+      <p class="card-text">العنوان: جدة, طريق الملك</p>
+
+      <!-- Service Menu -->
+      <div class="service-menu">
+        <button class="btn dropdown-toggle" type="button" id="serviceDropdown1" data-bs-toggle="dropdown" aria-expanded="false">
+          الخدمات المقدمة
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="serviceDropdown1">
+          <li><a class="dropdown-item" href="#">شعر - $25</a></li>
+          <li><a class="dropdown-item" href="#">لحية - $25</a></li>
+          <li><a class="dropdown-item" href="#">صبغة - $25</a></li>
+          <li><a class="dropdown-item" href="#">صنفرة - $25</a></li>
+          <li><a class="dropdown-item" href="#">مساج - $25</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Book Now Button -->
+    <div class="book-now-container">
+      <button class="btn btn-teal" data-toggle="expand-card">احجز الآن</button>
+    </div>
+
+    <!-- Session Times Container (Initially hidden) -->
+    <div class="session-times-container d-none">
+      <div class="session-times mt-3">
+        <button class="btn btn-outline-teal me-2 mb-2" data-time="10:00">10:00</button>
+        <button class="btn btn-outline-teal me-2 mb-2" data-time="11:00">11:00</button>
+        <button class="btn btn-outline-teal me-2 mb-2" data-time="12:00">12:00</button>
+        <button class="btn btn-outline-teal me-2 mb-2" data-time="13:00">13:00</button>
+        <button class="btn btn-outline-teal me-2 mb-2" data-time="14:00">14:00</button>
+        <button class="btn btn-outline-teal me-2 mb-2" data-time="15:00">15:00</button>
+        <button class="btn btn-outline-teal me-2 mb-2" data-time="16:00">16:00</button>
+        <button class="btn btn-outline-teal me-2 mb-2" data-time="17:00">17:00</button>
+        <button class="btn btn-outline-teal me-2 mb-2" data-time="18:00">18:00</button>
+        <button class="btn btn-outline-teal me-2 mb-2" data-time="19:00">19:00</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
      <!-- Barber 2 -->
      <div class="col-md-4">
@@ -335,9 +368,9 @@ header .btn-teal:hover {
           <h5 class="card-title">احمد علي </h5>
           <p class="card-text">صالون هنادي المالكي</p>
           <p class="card-text">
-            <span class="star-rating">★★★★★</span>
+            <span class="star-rating"></span>
           </p>
-          <p class="card-text">العدد الكلي للجلسات: 120</p>
+          <p class="card-text">العدد الكلي للجلسات: 0</p>
           <p class="card-text">العنوان: جدة, طريق الملك</p>
 
           <!-- Service Menu -->
@@ -363,16 +396,8 @@ header .btn-teal:hover {
         <!-- Session Times Container (Initially hidden) -->
         <div class="session-times-container d-none">
           <div class="session-times mt-3">
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="10:00">10:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="11:00">11:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="12:00">12:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="13:00">13:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="14:00">14:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="15:00">15:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="16:00">16:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="17:00">17:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="18:00">18:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="19:00">19:00</button>
+            <button class="btn btn-outline-teal me-2 mb-2" data-time="10:00">لا يمكن الحجز</button>
+          
           </div>
         </div>
       </div>
@@ -392,9 +417,9 @@ header .btn-teal:hover {
           <h5 class="card-title">احمد علي </h5>
           <p class="card-text">صالون هنادي المالكي</p>
           <p class="card-text">
-            <span class="star-rating">★★★★★</span>
+            <span class="star-rating"></span>
           </p>
-          <p class="card-text">العدد الكلي للجلسات: 120</p>
+          <p class="card-text">العدد الكلي للجلسات: 0</p>
           <p class="card-text">العنوان: جدة, طريق الملك</p>
 
           <!-- Service Menu -->
@@ -420,16 +445,8 @@ header .btn-teal:hover {
         <!-- Session Times Container (Initially hidden) -->
         <div class="session-times-container d-none">
           <div class="session-times mt-3">
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="10:00">10:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="11:00">11:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="12:00">12:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="13:00">13:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="14:00">14:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="15:00">15:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="16:00">16:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="17:00">17:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="18:00">18:00</button>
-            <button class="btn btn-outline-teal me-2 mb-2" data-time="19:00">19:00</button>
+            <button class="btn btn-outline-teal me-2 mb-2" data-time="10:00">لا يمكن الحجز</button>
+        
           </div>
         </div>
       </div>

@@ -178,6 +178,68 @@
     sidebar.classList.toggle('visible');
   });
 </script>
+<div class="container my-4">
+  <div class="shop-status-container py-4">
+    <div class="d-flex align-items-center">
+      <label for="shopStatusSwitch" class="form-label me-3">حالة الحساب :</label>
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input shop-status-switch"
+          type="checkbox"
+          id="shopStatusSwitch"
+          checked
+        />
+        <label class="form-check-label" for="shopStatusSwitch">
+          <span id="shopStatusLabel">مخفي</span>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  const shopStatusSwitch = document.getElementById('shopStatusSwitch');
+  const shopStatusLabel = document.getElementById('shopStatusLabel');
+
+  shopStatusSwitch.addEventListener('change', () => {
+    shopStatusLabel.textContent = shopStatusSwitch.checked ? 'ظهور' : 'مخفي';
+  });
+</script>
+
+
+<div class="container my-4">
+<div class="order-status-container py-4">
+  <div class="d-flex align-items-center">
+    <label for="orderStatusSwitch" class="form-label me-3">القبول التلقائي للطلبات</label>
+    <div class="form-check form-switch">
+      <input
+        class="form-check-input shop-status-switch"
+        type="checkbox"
+        id="orderStatusSwitch"
+        checked
+      />
+      <label class="form-check-label" for="orderStatusSwitch">
+        <span id="orderStatusLabel">غير مفعل</span>
+      </label>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<script>
+const orderStatusSwitch = document.getElementById('orderStatusSwitch');
+const orderStatusLabel = document.getElementById('orderStatusLabel');
+
+orderStatusSwitch.addEventListener('change', () => {
+  orderStatusLabel.textContent = orderStatusSwitch.checked ? 'مفعل' : 'غير مفعل';
+});
+</script>
+
+
+
+
 
   <div class="container my-4">
     <h2 class="text-center mb-4">Session Planner</h2>
